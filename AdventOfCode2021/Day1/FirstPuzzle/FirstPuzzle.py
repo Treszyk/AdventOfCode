@@ -1,4 +1,4 @@
-n = 0
+n = 0 # the amount of sums that are larger than the previous one
 
 with open('./input.txt', 'r') as file:
     for i, line in enumerate(file):
