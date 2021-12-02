@@ -2,8 +2,8 @@ horizontal_pos = 0
 depth = 0
 aim = 0
 
-with open('./input.txt', 'r') as file:
-    for line in file:
+with open('./input.txt', 'r') as f:
+    for line in f:
         key = line.strip().split()[0]
         value = int(line.strip().split()[1])
         
