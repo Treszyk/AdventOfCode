@@ -14,5 +14,6 @@ with open('./input.txt', 'r') as f:
             aim -= value
         else:
             aim += value
+    f.close()
 
 print(f'The result is: {horizontal_pos * depth}')

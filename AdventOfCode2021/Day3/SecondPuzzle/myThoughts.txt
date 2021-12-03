@@ -1,0 +1,2 @@
+I don't really like this code. It's possible that I might come back to this in the future and
+rewrite it. But for now it works :)
