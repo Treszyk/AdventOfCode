@@ -1,26 +1,26 @@
-def bin_to_decimal(binInAList):
+def bin_to_decimal(bin_in_a_list):
     """
     Takes a list with bits in seperate indexes and calculates its decimal value
     """
     power = 0
     decimal = 0
 
-    for bit in reversed(binInAList):
+    for bit in reversed(bin_in_a_list):
         decimal += (2**power) * int(bit)
         power += 1
 
     return decimal
 
-def get_gamma_and_epsilon_rate(inputList):
+def get_gamma_and_epsilon_rate(bin_in_a_list):
     """
-    Takes an inputList and returns gamma and epsilon rates
+    Takes an bin_in_a_list and returns gamma and epsilon rates
     """
     gamma_rate = []
     epsilon_rate = []
-    for column in range(len(inputList[0])):
+    for column in range(len(bin_in_a_list[0])):
         value = 0
 
-        for row in inputList: #
+        for row in bin_in_a_list: #
             if(row[column] == '1'):
                 value += 1
             else:
@@ -35,16 +35,16 @@ def get_gamma_and_epsilon_rate(inputList):
 
     return bin_to_decimal(gamma_rate), bin_to_decimal(epsilon_rate)
 
-def get_o2_or_co2_rating(inputList, co2=False):
+def get_o2_or_co2_rating(bin_in_a_list, co2=False):
     """
-    Takes an inputList and depending on the param 'co2' returns the o2 rating if it's False and returns co2 when it's true
+    Takes an bin_in_a_list and depending on the param 'co2' returns the o2 rating if it's False and returns co2 when it's true
     """
-    for column in range(len(inputList[0])):
+    for column in range(len(bin_in_a_list[0])):
         value = 0
         rows1 = []
         rows0 = []
 
-        for row in inputList: #
+        for row in bin_in_a_list: #
             if(row[column] == '1'):
                 value += 1
                 rows1.append(row)
@@ -52,24 +52,24 @@ def get_o2_or_co2_rating(inputList, co2=False):
                 rows0.append(row)
                 value -= 1
 
-        if len(inputList) == 1:
+        if len(bin_in_a_list) == 1:
             break
         if value > 0:
-            inputList = rows0 if co2 else rows1
+            bin_in_a_list = rows0 if co2 else rows1
         elif value == 0:
-            inputList = rows0 if co2 else rows1
+            bin_in_a_list = rows0 if co2 else rows1
         else:
-            inputList = rows1 if co2 else rows0
+            bin_in_a_list = rows1 if co2 else rows0
 
-    return bin_to_decimal([bit for bit in inputList[0]])
+    return bin_to_decimal([bit for bit in bin_in_a_list[0]])
 
 
 with open('./input.txt') as f:
-    lis = [code.strip() for code in f]
+    codes = [code.strip() for code in f]
 
-gamma_rate, epsilon_rate = get_gamma_and_epsilon_rate(lis) 
-o2_generator_rating = get_o2_or_co2_rating(lis)
-co2_scrubber_rating = get_o2_or_co2_rating(lis, co2=True)
+gamma_rate, epsilon_rate = get_gamma_and_epsilon_rate(codes) 
+o2_generator_rating = get_o2_or_co2_rating(codes)
+co2_scrubber_rating = get_o2_or_co2_rating(codes, co2=True)
 
 print(f'The power consumption is: {gamma_rate * epsilon_rate}')
 print(f'The life support rating is: {o2_generator_rating * co2_scrubber_rating}')

@@ -1,8 +1,8 @@
-def bin_to_decimal(binInAList):
+def bin_to_decimal(bin_in_a_list):
     power = 0
     decimal = 0
 
-    for bit in reversed(binInAList):
+    for bit in reversed(bin_in_a_list):
         decimal += (2**power) * int(bit)
         power += 1
 
@@ -13,12 +13,12 @@ most_common = []
 least_common = []
 
 with open('./input.txt') as f:
-    lis = [code.strip() for code in f]
+    codes = [code.strip() for code in f]
 
-for column in range(len(lis[0])):
+for column in range(len(codes[0])):
     value = 0
 
-    for row in lis: #
+    for row in codes: #
         if(row[column] == '1'):
             value += 1
         else:
